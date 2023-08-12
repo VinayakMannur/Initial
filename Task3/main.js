@@ -16,8 +16,14 @@ function onSubmit(e){
         setTimeout(()=>msg.remove(),3000);
     }else{
         const li = document.createElement('li');
-        li.appendChild(document.createTextNode(`${nameInput.value}:${emailInput.value}`));
-        localStorage.setItem(`${nameInput.value}`,`${emailInput.value}`);
+        li.appendChild(document.createTextNode(`${nameInput.value}:${emailInput.value}`)); 
+        let obj = {
+            name : `${nameInput.value}`,
+            email : `${emailInput.value}`
+        };
+        let myObj_serialized = JSON.stringify(obj);
+
+        localStorage.setItem("myObj",myObj_serialized);
         userList.appendChild(li);   
 
         nameInput.value = '';
