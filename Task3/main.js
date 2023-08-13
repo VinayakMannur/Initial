@@ -3,10 +3,13 @@ const nameInput = document.querySelector('#name');
 const emailInput = document.querySelector('#email');
 const msg = document.querySelector('.msg');
 const userList = document.querySelector('#users');
+const editList = document.querySelector('#users');
 
 myForm.addEventListener('submit',onSubmit);
 
 userList.addEventListener('click',removeItem);
+
+editList.addEventListener('click',edit);
 
 function onSubmit(e){
     e.preventDefault();
@@ -19,10 +22,14 @@ function onSubmit(e){
     }else{
         const li = document.createElement('li');
         const deleteBtn = document.createElement('button');
+        const editBtn = document.createElement('button');
         deleteBtn.className = 'delete';
+        editBtn.className = 'edit';
         deleteBtn.appendChild(document.createTextNode('X'));
+        editBtn.appendChild(document.createTextNode('EDIT'));
 
         li.appendChild(document.createTextNode(`${nameInput.value} : ${emailInput.value}  `)); 
+        li.appendChild(editBtn);
         li.appendChild(deleteBtn);
         let obj = {
             name : `${nameInput.value}`,
@@ -31,7 +38,7 @@ function onSubmit(e){
         let myObj_serialized = JSON.stringify(obj);
 
         localStorage.setItem(`${emailInput.value}`,myObj_serialized);
-        userList.appendChild(li);   
+        userList.appendChild(li);  
         // nameInput.value = '';
         // emailInput.value = '';
     }
@@ -44,6 +51,17 @@ function removeItem(e){
             localStorage.removeItem(`${emailInput.value}`);
             var li = e.target.parentElement;
             userList.removeChild(li);
+            nameInput.value = '';
+            emailInput.value = '';
         }
+    }
+}
+
+function edit(e){
+    e.preventDefault();
+    if(e.target.classList.contains('edit')){
+        localStorage.removeItem(`${emailInput.value}`);
+        var li = e.target.parentElement;
+            userList.removeChild(li);
     }
 }
