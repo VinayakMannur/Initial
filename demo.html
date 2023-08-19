@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+</head>
+<body>
+    <script>
+        // const name = (arr)=>{
+        //     var i = 0;
+        //     return ()=>{
+        //         console.log('Hello '+arr[i]);
+        //         i++;
+        //     }
+        // }
+
+        // let fun = name(["Ram","Shyam"]);
+        // fun()
+        // fun()
+
+        studentobj = {
+            'yash': 26,
+            'vaibhav': 24,
+            'rajesh' : 25,
+        }
+
+        // studentobj.forEach(element => {
+        //     console.log(element)
+        // })
+
+        const keyss = Object.keys(studentobj);
+        console.log(keyss)
+        var sum = 0;
+        var cunt = 0
+        keyss.forEach((key)=>{
+            sum = sum+ studentobj[key]
+            cunt++
+        })
+
+        console.log(sum/cunt)
+
+    </script>
+</body>
+</html>
